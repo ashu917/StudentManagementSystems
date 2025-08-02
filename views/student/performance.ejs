@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Performance</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #e8f0fe, #dfe9f3);
+      min-height: 100vh;
+    }
+    .performance-card {
+      background: #ffffffdd;
+      border-radius: 15px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+    .card-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+    .label {
+      font-weight: 600;
+      color: #555;
+    }
+    .data-box {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 10px 15px;
+    }
+    .progress {
+      height: 20px;
+    }
+    .progress-bar {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="performance-card">
+          <div class="text-center mb-4">
+            <h2 class="card-title">📊 My Performance</h2>
+            <p class="text-muted">Student: <%= student?.name || 'N/A' %> | ID: <%= student?.id || 'N/A' %></p>
+          </div>
+
+          <% if (profile) { %>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label class="label">Attendance (%)</label>
+                <div class="data-box">
+                  <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" 
+                         style="width: <%= profile.attendance || 0 %>%;">
+                      <%= profile.attendance || 'N/A' %>%
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="label">Assignments Completed</label>
+                <div class="data-box"><%= profile.assignments_done || 'N/A' %></div>
+              </div>
+
+              <div class="col-md-12">
+                <label class="label">Projects</label>
+                <div class="data-box"><%= profile.projects || 'N/A' %></div>
+              </div>
+
+              <div class="col-md-12">
+                <label class="label">Participation in Events</label>
+                <div class="data-box"><%= profile.participation || 'N/A' %></div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="label">Behavior Rating</label>
+                <div class="data-box"><%= profile.behavior_rating || 'N/A' %></div>
+              </div>
+
+              <div class="col-md-12">
+                <label class="label">Teacher's Remarks</label>
+                <div class="data-box"><%= profile.teacher_remarks || 'N/A' %></div>
+              </div>
+
+              <div class="col-md-12 text-end">
+                <small class="text-muted">
+                  Last Updated: 
+                  <%= profile.updated_at 
+                      ? new Date(profile.updated_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) 
+                      : 'N/A' 
+                  %>
+                </small>
+              </div>
+            </div>
+          <% } else { %>
+            <div class="alert alert-warning text-center">
+              No performance data available yet.
+            </div>
+          <% } %>
+
+          <div class="text-center mt-4">
+            <a href="/student/profile" class="btn btn-outline-secondary" role="button" aria-label="Back to Profile">
+              🔙 Back to Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

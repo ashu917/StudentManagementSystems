@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Student Performance</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header bg-info text-white">
+        <h4 class="mb-0">🔍 Search Student Performance by Email or Password</h4>
+      </div>
+      <div class="card-body">
+        <form action="/admin/student-performance" method="POST">
+          <div class="mb-3">
+            <label class="form-label">Select Email or Password</label>
+            <select name="identifier" class="form-select" required>
+              <option value="">-- Choose Email or Password --</option>
+              <% students.forEach(s => { %>
+                <option value="<%= s.email %>"><%= s.email %></option>
+                <option value="<%= s.password %>"><%= s.password %></option>
+              <% }) %>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">View Performance</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

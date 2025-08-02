@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Students</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4 text-primary">📋 All Registered Students</h2>
+
+    <!-- 🔍 Search Form -->
+    <form method="get" action="/admin/search" class="row g-2 mb-3">
+      <div class="col-md-9">
+        <input type="text" name="term" class="form-control" placeholder="Search by name, email, course, status..." required>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary w-100">🔍 Search</button>
+      </div>
+    </form>
+
+    <!-- 🔃 Sort Form -->
+    <form method="get" action="/admin/sort" class="row g-2 mb-4">
+      <div class="col-md-5">
+        <select name="field" class="form-select">
+          <option value="name">Name</option>
+          <option value="course">Course</option>
+          <option value="fees">Fees</option>
+          <option value="age">Age</option>
+          <option value="admission_date">Admission Date</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <select name="order" class="form-select">
+          <option value="asc">⬆️ Ascending</option>
+          <option value="desc">⬇️ Descending</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success w-100">🔃 Sort</button>
+      </div>
+    </form>
+
+    <% if (students.length > 0) { %>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Course</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% students.forEach((s, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= s.name %></td>
+                <td><%= s.email %></td>
+                <td><%= s.course %></td>
+                <td><%= s.age %></td>
+                <td><%= s.gender %></td>
+                <td>
+                  <a href="/admin/view/<%= s.id %>" class="btn btn-sm btn-info mb-1">👁</a>
+                  <a href="/admin/edit/<%= s.id %>" class="btn btn-sm btn-warning mb-1">✏️</a>
+                  <a href="javascript:void(0)" class="btn btn-sm btn-danger mb-1" onclick="confirmDelete('<%= s.id %>')">🗑</a
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p class="text-muted">No student records found.</p>
+    <% } %>
+
+    <a href="/admin/dashboard" class="btn btn-secondary mt-3">🔙 Back to Dashboard</a>
+
+
+   <script>
+  function confirmDelete(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "This student record will be permanently deleted!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      background: '#fefefe',
+      backdrop: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = `/admin/delete/${id}`;
+      }
+    });
+  }
+</script>
+
+<script>
+  function confirmDelete(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "This student record will be permanently deleted!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      background: '#fefefe',
+      backdrop: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = /admin/delete/`${id}`;
+      }
+    });
+  }
+</script>
+  </div>
+</body>
+</html>

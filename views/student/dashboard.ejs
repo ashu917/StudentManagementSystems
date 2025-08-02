@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: linear-gradient(to right, #f0f8ff, #fdfdfd);
+      min-height: 100vh;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+    .card {
+      transition: 0.3s ease-in-out;
+    }
+    h2 {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h2 class="text-primary">🎓 Student Dashboard</h2>
+      <p class="lead">Welcome, <%= student.name %>!</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- View Profile -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-hover shadow-sm border-info">
+          <div class="card-body text-center">
+            <h5 class="card-title">👤 View Profile</h5>
+            <p class="card-text">See your personal and academic information.</p>
+            <a href="/student/profile/<%= student.id %>" class="btn btn-outline-info">View</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- View Performance -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-hover shadow-sm border-success">
+          <div class="card-body text-center">
+            <h5 class="card-title">📊 Performance</h5>
+            <p class="card-text">Track your academic performance & reports.</p>
+            <a href="/student/performance/<%= student.id %>" class="btn btn-outline-success">Check</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Profile -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-hover shadow-sm border-warning">
+          <div class="card-body text-center">
+            <h5 class="card-title">✏️ Edit Profile</h5>
+            <p class="card-text">Update your contact or academic details.</p>
+            <a href="/student/edit/<%= student.id %>" class="btn btn-outline-warning">Edit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logout -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-hover shadow-sm border-danger">
+          <div class="card-body text-center">
+            <h5 class="card-title">🚪 Logout</h5>
+            <p class="card-text">Exit the student portal securely.</p>
+            <a href="/logouts" class="btn btn-outline-danger">Logout</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

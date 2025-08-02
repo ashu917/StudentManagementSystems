@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome | Student Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ✅ Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 🌟 Optional Favicon -->
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <!-- 🎨 Minimal Style for Layout -->
+  <style>
+    .video-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-text {
+      color: #fff;
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎥 Background Video -->
+  <video autoplay muted loop class="video-bg">
+    <source src="/public/videos/school-campus.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- 🌐 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">🎓 StudentMgmt</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 🚀 Hero Section -->
+  <div class="container-fluid overlay text-center">
+    <div class="container py-5">
+      <h1 class="display-3 fw-bold mb-4 hero-text">Welcome to the Student Management System</h1>
+      <p class="lead fs-5 mb-5 text-white-50">
+        Manage students, track academic progress, and streamline operations — all in one dashboard.
+      </p>
+
+      <!-- 🔐 Login Buttons -->
+      <div class="d-flex justify-content-center gap-4 flex-wrap">
+        <a href="/admin/login" class="btn btn-outline-light btn-lg px-4">
+          🔐 Admin Login
+        </a>
+        <a href="/student/login" class="btn btn-success btn-lg px-4">
+          🧑‍🎓 Student Login
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✨ Footer -->
+  <footer class="text-center py-4 border-top">
+    <p class="mb-0 text-muted">&copy; <%= new Date().getFullYear() %> Student Management System. All rights reserved.</p>
+  </footer>
+
+  <!-- ✅ Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
